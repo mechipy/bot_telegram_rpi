@@ -7,8 +7,6 @@ from telegram.ext import Updater, CommandHandler
 def hello(update, context):
     update.message.reply_text("Bienvenido a Proyectito")
 
-    # update.message.reply_photo(open("C:\\Users\\merce\\Desktop\\gym.jpg"))
-
 
 def echo(update, context):
     if len(context.args) > 0:
@@ -18,8 +16,9 @@ def echo(update, context):
     else:
         update.message.reply_text("Escribe algo")
 
-# def led(update, context):
-    # lucecita
+
+def led(update, context):
+    pass
 
 
 def check(update, context):
@@ -37,7 +36,7 @@ updater = Updater(TOKEN_TL)
 
 updater.dispatcher.add_handler(CommandHandler('start', hello))
 updater.dispatcher.add_handler(CommandHandler('echo', echo))
-# updater.dispatcher.add_handler(CommandHandler('led', led))
+updater.dispatcher.add_handler(CommandHandler('led', led))
 updater.dispatcher.add_handler(CommandHandler('check', check))
 
 print("Iniciando bot")
