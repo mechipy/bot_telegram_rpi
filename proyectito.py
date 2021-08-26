@@ -22,7 +22,16 @@ def led(update, context):
 
 
 def check(update, context):
-    salida = subprocess.check_output(["/home/pi/scripts/takepicture"])
+    if len(context.args) == 0:
+        salida = subprocess.check_output(["/home/pi/scripts/takepicture"])
+    else:
+        modo_nocturno = context.args[0]
+        if modo_nocturno == "nocturno":
+            salida = subprocess.check_output(["/home/pi/scripts/takepicture", "-n"])
+        else:
+            update.message.reply_text("comando no válido, para modo nocturno, escriba \"nocturno\"")
+            return
+            
     ruta_photo = salida.decode().strip()
     photo = open(ruta_photo, 'rb')
     update.message.reply_photo(photo)
